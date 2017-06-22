@@ -1,0 +1,4 @@
+slugify
+requests
+beautifulsoup4
+lookupy
