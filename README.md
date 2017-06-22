@@ -11,7 +11,7 @@ All operations on domains must work except this ones:
   * Activate/deactivate autorenew domain
   
   
-## Quick start:
+## Quickstart:
 
 ```
 git clone https://github.com/EstudioNexos/getout.git
@@ -34,12 +34,13 @@ Results from queries are Lookupy collections, this means that can be filtered us
 Check documentation for more ways of filtering: https://github.com/naiquevin/lookupy
 
 ```
-summary.filter(canonical_name__endswith='es')
+summary.filter(canonical_name__endswith='.es')
 ```
+## Contributing
 
 Issues and contributions are welcomed
 
-DISCLAIMER
+## DISCLAIMER
 
 This project is not related in any way with cdmon.com or 10dencehispahard S.L.
 
