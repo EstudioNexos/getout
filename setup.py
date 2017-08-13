@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
+#~ from __future__ import unicode_literals
 from distutils.core import setup
 
 try:
     long_desc = open('./README.rst').read()
 except IOError:
-    long_desc = 'See:https://github.com/EstudioNexos/getout/blob/master/README.md'
+    long_desc = 'See: https://github.com/EstudioNexos/getout/blob/master/README.md'
 
 setup(
     name='Getout',
     version='0.1',
-    author='Estudio Nexos - Néstor Díaz',
+    author=u'Estudio Nexos - Néstor Díaz',
     author_email='hola@estudionexos.com',
     url='https://github.com/EstudioNexos/getout',
     install_requires=[
