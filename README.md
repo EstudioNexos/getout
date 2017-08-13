@@ -9,7 +9,10 @@ All operations on domains must work except this ones:
 
   * Activate/deactivate private whois
   * Activate/deactivate autorenew domain
-  
+ 
+## Motivation:
+
+In Spanish: https://www.estudionexos.com/post/si-no-tiene-api-lo-hacemos-una-solucion-para-usuarios-de-cdmon/
   
 ## Quickstart:
 
