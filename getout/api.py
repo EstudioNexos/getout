@@ -306,7 +306,6 @@ class CDMON(object):
                 date = remove_shit(clean_string(cells[1].a.span.text))
             name = clean_string(cells[1].a.get('href')).split('=')[-1]
             if len(cells) > 5:
-                print cells[4].a.get('href')
                 canonical_name = clean_string(cells[4].a.get('href')).split('=')[-1]
                 slug =  slugify(unicode(name.replace('.','_')))
                 _dict = {'id': _id,'name': name, 'canonical_name': canonical_name, 'provider': 'cdmon', 'slug': slug,'date':date}
