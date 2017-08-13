@@ -23,7 +23,7 @@ touch myscript.py
 And then in myscript.py:
 
 ```
-from api import CDMON
+from getout.api import CDMON
 
 cdmon = CDMON(user="yourcdmonuser",password="yourcdmonpassword")
 
