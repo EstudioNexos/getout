@@ -13,17 +13,16 @@ All operations on domains must work except this ones:
   
 ## Quickstart:
 
+
 ```
-git clone https://github.com/EstudioNexos/getout.git
-cd getout
-pip install -r requirements.txt
+sudo pip install https://github.com/EstudioNexos/getout/archive/master.zip
 touch myscript.py
 ```
 
 And then in myscript.py:
 
 ```
-from api import CDMON
+from getout.api import CDMON
 
 cdmon = CDMON(user="yourcdmonuser",password="yourcdmonpassword")
 
