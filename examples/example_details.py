@@ -1,4 +1,4 @@
-from api import CDMON
+from getout.api import CDMON
 
 cdmon = CDMON(user="yourcdmonuser",password="yourcdmonpassword")
 
