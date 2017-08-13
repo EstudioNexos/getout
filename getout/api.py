@@ -37,8 +37,14 @@ def remove_shit(string):
     return string
     
 def hydrate(text):
+    #~ print(text)
     evaluated = ast.literal_eval(text)
+    #~ evaluated2 = ast.literal_eval(evaluated)
+    #~ print(evaluated2)
     HTML = evaluated[3]['ARGS']['HTML']
+    
+    HTML = "<html><body><table>%s</table></body></html>" % HTML.replace("\/","/")
+    #~ print(HTML)
     return HTML
     
 def endpoint(data):
@@ -300,18 +306,22 @@ class CDMON(object):
                 _id = clean_string(r['id'].split("-")[-1])
             except: pass
             cells = r.find_all('td')
-            dtend_span = cells[1].a.span
-            date = u''
-            if dtend_span:
-                date = remove_shit(clean_string(cells[1].a.span.text))
-            name = clean_string(cells[1].a.get('href')).split('=')[-1]
-            if len(cells) > 5:
-                canonical_name = clean_string(cells[4].a.get('href')).split('=')[-1]
+            if len(cells) == 3:
+                dtend_span = cells[1].find('span', attrs={"class":"dtend"})
+                date = u''
+                if dtend_span:
+                    date = remove_shit(clean_string(dtend_span.text.split("  ")[-1]))
+                name = clean_string(cells[1].div.a.get('href')).split('=')[-1]
+
+                #~ canonical_name = clean_string(cells[1].a.get('href')).split('=')[-1]
+                canonical_name = name
                 slug =  slugify(unicode(name.replace('.','_')))
                 _dict = {'id': _id,'name': name, 'canonical_name': canonical_name, 'provider': 'cdmon', 'slug': slug,'date':date}
                 logging.debug('Found in CDMON %s' % name)
                 if 'alta' in cells[1].text:
                     _dict['provider'] = 'other'
                 _list.append(_dict)
+            #~ else:
+                #~ print(r)
         c = Collection(_list)
         return c
