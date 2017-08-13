@@ -291,10 +291,9 @@ class CDMON(object):
             }
         services_list_r = self.s.post(self.services_url, services_payload)
         raw = services_list_r.text
-
         soup = self.get_soup(hydrate(raw))
         allrows = soup.find_all('tr')
-        _list = []
+        _list = []       
         for r in allrows:
             _id = None
             try:
@@ -306,12 +305,14 @@ class CDMON(object):
             if dtend_span:
                 date = remove_shit(clean_string(cells[1].a.span.text))
             name = clean_string(cells[1].a.get('href')).split('=')[-1]
-            canonical_name = clean_string(cells[4].a.get('href')).split('=')[-1]
-            slug =  slugify(unicode(name.replace('.','_')))
-            _dict = {'id': _id,'name': name, 'canonical_name': canonical_name, 'provider': 'cdmon', 'slug': slug,'date':date}
-            logging.debug('Found in CDMON %s' % name)
-            if 'alta' in cells[1].text:
-                _dict['provider'] = 'other'
-            _list.append(_dict)
+            if len(cells) > 5:
+                print cells[4].a.get('href')
+                canonical_name = clean_string(cells[4].a.get('href')).split('=')[-1]
+                slug =  slugify(unicode(name.replace('.','_')))
+                _dict = {'id': _id,'name': name, 'canonical_name': canonical_name, 'provider': 'cdmon', 'slug': slug,'date':date}
+                logging.debug('Found in CDMON %s' % name)
+                if 'alta' in cells[1].text:
+                    _dict['provider'] = 'other'
+                _list.append(_dict)
         c = Collection(_list)
         return c
